@@ -41,11 +41,26 @@ public class ContactTest extends Contact{
             switch(action) {
 
                 case 1: {
+                    //list of contacts
+                    //what i thought would work but did not hve to get help in AM
+                    List<String> currentList = new ArrayList<>();
+
+                    try {
+                        currentList = Files.readAllLines(toOurDataPlace);
+                    } catch (IOException ioe){
+                       ioe.printStackTrace();
+                    }
+
+                    for(String line: currentList){
+                        System.out.println(line);
+                    }
 
 
                 }
 
                 case 2:{
+                    //add contact
+
                     System.out.println("\n Enter the contacts last name.");
                     String lastname = reader.next();
                     if(lastname == null){
@@ -102,12 +117,15 @@ public class ContactTest extends Contact{
                 }
 
                 case 3: {
+                    //search contact by name
 
                 }
                 case 4:{
+                    //delete and existing contact
 
                 }
                 case 5:{
+                    //exit
 
                 }
 
