@@ -1,10 +1,10 @@
 package ContactList;
-
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+
 
 public class Contact {
     private String lastName, firstName, phoneNumber;
@@ -14,6 +14,9 @@ public class Contact {
         this.firstName = firstName;
         this.phoneNumber = phoneNumber;
     }
+    public Contact(){
+
+    };
 
     public String getLastName() {
         return lastName;
@@ -39,11 +42,12 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    static Path toOurDataPlace = Paths.get("/IdeaProjects/Contacts_Manager/src/src");
+    Path toOurDataPlace = Paths.get("src/src/ContactList");
 
+    Path toOurContactFile = Paths.get(String.valueOf(toOurDataPlace), "contactList.txt");
 
-    static void write(){
-
-    }
+//    static void write(){
+//
+//    }
 
 }
