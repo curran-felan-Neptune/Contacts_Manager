@@ -1,0 +1,4 @@
+*.iml
+.idea/*
+.ds_store
+out/*
