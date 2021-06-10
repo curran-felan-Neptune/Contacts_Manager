@@ -15,11 +15,11 @@ public class ContactTest extends Contact{
         Contact contact;
         contact = new Contact();
         int action = 0;
-        Path toOurDataPlace = Paths.get("src/src/ContactList");
+        Path toOurDataPlace = Paths.get("src/ContactList");
 
         Path toOurContactFile = Paths.get(String.valueOf(toOurDataPlace), "contactList.txt");
 
-        ArrayList<Contact> contacts = new ArrayList<Contact>();
+        ArrayList<String> contacts = new ArrayList<String>();
         while(action != 5){
 
             System.out.println("Welcome to the Contact list \n" + "What would you like to do?");
@@ -71,7 +71,7 @@ public class ContactTest extends Contact{
                         contact.setPhoneNumber(phonenumber);
                     }
 
-                    contacts.add(contact);
+                    contacts.add(String.valueOf(contact));
 
                     try {
 
@@ -84,19 +84,16 @@ public class ContactTest extends Contact{
                         }
 
                        try {
-                           Files.write(toOurContactFile, contact);
+                           Files.write(toOurContactFile, contacts);
                        } catch (IOException ioe){
                            ioe.printStackTrace();
                        }
-
                         System.out.println("Your contact has been saved.");
                     }
 
                     catch (IOException e) {
                         e.printStackTrace();
                     }
-
-
                 break;
 
 
