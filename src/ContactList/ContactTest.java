@@ -169,20 +169,20 @@ public class ContactTest extends Contact{
                     break;
 
                 }
-                case 4:{
+                case 4: {
                     Scanner delete = new Scanner(System.in);
 
                     //delete a existing contact
                     System.out.println("Enter name of contact to be deleted: ");
                     String contactToDelete = delete.nextLine();
                     Iterator<String> listIterator = currentList.iterator();
-        while(listIterator.hasNext()){
-            String contacts1 = listIterator.next();
-            if (contacts1.equals(contactToDelete)){
-               listIterator.remove();
-            }
-        }
-        break;
+                    while(listIterator.hasNext()){
+                        String contacts1 = listIterator.next();
+                        if (contacts1.equals(contactToDelete)){
+                           listIterator.remove();
+                        }
+                    }
+                    break;
 
                 }
                 case 5:{
