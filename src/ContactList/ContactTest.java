@@ -34,7 +34,7 @@ public class ContactTest extends Contact{
             reader.useDelimiter("\n");
             action = reader.nextInt();
 
-            if (action <= 0 || action >= 5 ){
+            if (action <= 0 || action >= 6 ){
                 System.out.println("Invalid Selection");
             }
 
@@ -170,18 +170,24 @@ public class ContactTest extends Contact{
 
                 }
                 case 4:{
-//                    //delete a existing contact
-//                    Iterator<String> listIterator = currentList.iterator();
-//        while(listIterator.hasNext()){
-//            String contacts1 = listIterator.next();
-//            if (contacts1.equals("ContactList.Contact@2a84aee7")){
-//               listIterator.remove();
-//            }
-//        }
+                    Scanner delete = new Scanner(System.in);
+
+                    //delete a existing contact
+                    System.out.println("Enter name of contact to be deleted: ");
+                    String contactToDelete = delete.nextLine();
+                    Iterator<String> listIterator = currentList.iterator();
+        while(listIterator.hasNext()){
+            String contacts1 = listIterator.next();
+            if (contacts1.equals(contactToDelete)){
+               listIterator.remove();
+            }
+        }
+        break;
 
                 }
                 case 5:{
                     //exit
+                    System.out.println("Thanks for using the contact list! Goodbye!");
 
                 }
 
