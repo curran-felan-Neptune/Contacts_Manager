@@ -63,6 +63,7 @@ public class ContactTest {
 
                 case 2:{
                     //add contact
+                    contacts.clear();
 
                     System.out.println("\n Enter the contacts last name.");
                     String lastname = reader.next();
@@ -105,6 +106,7 @@ public class ContactTest {
 
                         //append to file
                        try {
+//                           System.out.println(contacts);
                            Files.write(toOurContactFile, contacts, StandardOpenOption.APPEND);
                        } catch (IOException ioe){
                            ioe.printStackTrace();
@@ -128,8 +130,9 @@ public class ContactTest {
 
                         System.out.println("\nEnter the "
                                 + "name to search for: ");
-                        reader.next();
-                        String searchTerm = reader.nextLine();
+//
+                        String searchTerm = reader.next();
+                        System.out.println(searchTerm);
 
 
                         // Open the file as a buffered reader
@@ -143,7 +146,7 @@ public class ContactTest {
 
                         // Let the user know what we are searching for
                         System.out.println("Searching for " + searchTerm
-                                + " in file...");
+                                + "in file...");
                         // Loop through each line, putting the line into our line
                         // variable.
                         boolean noMatches = true;
@@ -176,24 +179,39 @@ public class ContactTest {
 
                 }
                 case 4: {
-                    Scanner delete = new Scanner(System.in);
-
                     //delete a existing contact
+
+                    Scanner delete = new Scanner(System.in);
+                    List<String> currentList1 = new ArrayList<>();
+                try {
+                    currentList1 = Files.readAllLines(toOurContactFile);
+                } catch (IOException ioe){
+                    ioe.printStackTrace();
+                };
+
                     System.out.println("Enter name of contact to be deleted: ");
                     String contactToDelete = delete.nextLine();
-                    Iterator<String> listIterator = currentList.iterator();
+                    Iterator<String> listIterator = currentList1.iterator();
                     while(listIterator.hasNext()){
                         String contacts1 = listIterator.next();
-                        if (contacts1.equals(contactToDelete)){
+                        if (contacts1.contains(contactToDelete)){
                            listIterator.remove();
                             System.out.println("Contact Deleted.");
-                        } else {
-                            System.out.println("Contact not found");
                         }
+//                        else {
+//                            System.out.println("Contact not found");
+//                        }
+
 
                     }
-                    break;
+                    try {
+                        Files.write(toOurContactFile, currentList1);
+                    } catch (IOException ioe){
+                        ioe.printStackTrace();
+                    }
+                    System.out.println("Your contact list has been updated.");
 
+                    break;
                 }
                 case 5:{
                     //exit
