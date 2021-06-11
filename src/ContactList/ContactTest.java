@@ -38,12 +38,14 @@ public class ContactTest extends Contact{
                 System.out.println("Invalid Selection");
             }
 
+            List<String> currentList = new ArrayList<>();
+
             switch(action) {
 
                 case 1: {
                     //list of contacts
                     //what i thought would work but did not hve to get help in AM
-                    List<String> currentList = new ArrayList<>();
+//                    List<String> currentList = new ArrayList<>();
 
                     try {
                         currentList = Files.readAllLines(toOurContactFile);
@@ -119,10 +121,63 @@ public class ContactTest extends Contact{
 
                 case 3: {
                     //search contact by name
+                    try {
+                        System.out.println("\nEnter the "
+                                + "name to search for: ");
+                        String searchterm = reader.next();
+
+                        // Open the file as a buffered reader
+                        BufferedReader bf = new BufferedReader(new FileReader(
+                                "contactList.txt"));
+
+                        // Start a line count and declare a string to hold our
+                        // current line.
+                        int linecount = 0;
+                        String line;
+
+                        // Let the user know what we are searching for
+                        System.out.println("Searching for " + searchterm
+                                + " in file...");
+                        // Loop through each line, putting the line into our line
+                        // variable.
+                        boolean noMatches = true;
+                        while ((line = bf.readLine()) != null) {
+                            // Increment the count and find the index of the word.
+                            linecount++;
+                            int indexfound = line.indexOf(searchterm.toLowerCase());
+
+                            // If greater than -1, means we found a match.
+                            if (indexfound > -1) {
+                                System.out.println("\nContact was FOUND\n"
+                                        + "\nContact " + linecount + ": " + line);
+                                noMatches = false;
+                            }
+
+                        }
+
+                        // Close the file after done searching
+                        bf.close();
+                        if (noMatches) {
+                            System.out.println("\nNO MATCH FOUND.\n");
+                        }
+                    }
+
+                    catch (IOException e) {
+                        System.out.println("IO Error Occurred: " + e.toString());
+                    }
+
+                    break;
 
                 }
                 case 4:{
-                    //delete a existing contact
+//                    //delete a existing contact
+//                    Iterator<String> listIterator = currentList.iterator();
+//        while(listIterator.hasNext()){
+//            String contacts1 = listIterator.next();
+//            if (contacts1.equals("ContactList.Contact@2a84aee7")){
+//               listIterator.remove();
+//            }
+//        }
 
                 }
                 case 5:{
