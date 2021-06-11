@@ -46,7 +46,7 @@ public class ContactTest extends Contact{
                     List<String> currentList = new ArrayList<>();
 
                     try {
-                        currentList = Files.readAllLines(toOurDataPlace);
+                        currentList = Files.readAllLines(toOurContactFile);
                     } catch (IOException ioe){
                        ioe.printStackTrace();
                     }
@@ -54,6 +54,7 @@ public class ContactTest extends Contact{
                     for(String line: currentList){
                         System.out.println(line);
                     }
+                    break;
 
 
                 }
@@ -121,7 +122,7 @@ public class ContactTest extends Contact{
 
                 }
                 case 4:{
-                    //delete and existing contact
+                    //delete a existing contact
 
                 }
                 case 5:{
