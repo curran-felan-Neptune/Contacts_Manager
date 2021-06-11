@@ -4,12 +4,13 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
-public class ContactTest extends Contact{
-    public ContactTest(String lastName, String firstName, String phoneNumber) {
-        super(lastName, firstName, phoneNumber);
-    }
+public class ContactTest {
+//    public ContactTest(String lastName, String firstName, String phoneNumber) {
+//        super(lastName, firstName, phoneNumber);
+//    }
 
     public static void main(String[] args) {
         Contact contact;
@@ -87,9 +88,11 @@ public class ContactTest extends Contact{
                         break;
                     } else {
                         contact.setPhoneNumber(phonenumber);
+
                     }
 
-                    contacts.add(String.valueOf(contact));
+                    contacts.add(contact.getFirstName() + " " + contact.getLastName() + " " + contact.getPhoneNumber());
+
 
                     try {
 
@@ -102,7 +105,7 @@ public class ContactTest extends Contact{
                         }
 
                        try {
-                           Files.write(toOurContactFile, contacts);
+                           Files.write(toOurContactFile, contacts, StandardOpenOption.APPEND);
                        } catch (IOException ioe){
                            ioe.printStackTrace();
                        }
@@ -122,13 +125,15 @@ public class ContactTest extends Contact{
                 case 3: {
                     //search contact by name
                     try {
+
                         System.out.println("\nEnter the "
                                 + "name to search for: ");
-                        String searchterm = reader.next();
+                        String searchterm = reader.nextLine();
+                        reader.next();
 
                         // Open the file as a buffered reader
                         BufferedReader bf = new BufferedReader(new FileReader(
-                                "contactList.txt"));
+                                String.valueOf(toOurContactFile)));
 
                         // Start a line count and declare a string to hold our
                         // current line.
@@ -144,7 +149,7 @@ public class ContactTest extends Contact{
                         while ((line = bf.readLine()) != null) {
                             // Increment the count and find the index of the word.
                             linecount++;
-                            int indexfound = line.indexOf(searchterm.toLowerCase());
+                            int indexfound = line.indexOf(searchterm);
 
                             // If greater than -1, means we found a match.
                             if (indexfound > -1) {
@@ -180,7 +185,11 @@ public class ContactTest extends Contact{
                         String contacts1 = listIterator.next();
                         if (contacts1.equals(contactToDelete)){
                            listIterator.remove();
+                            System.out.println("Contact Deleted.");
+                        } else {
+                            System.out.println("Contact not found");
                         }
+
                     }
                     break;
 
