@@ -45,8 +45,7 @@ public class ContactTest {
 
                 case 1: {
                     //list of contacts
-                    //what i thought would work but did not hve to get help in AM
-//                    List<String> currentList = new ArrayList<>();
+
 
                     try {
                         currentList = Files.readAllLines(toOurContactFile);
@@ -104,6 +103,7 @@ public class ContactTest {
                             Files.createFile(toOurContactFile);
                         }
 
+                        //append to file
                        try {
                            Files.write(toOurContactFile, contacts, StandardOpenOption.APPEND);
                        } catch (IOException ioe){
@@ -128,8 +128,9 @@ public class ContactTest {
 
                         System.out.println("\nEnter the "
                                 + "name to search for: ");
-                        String searchterm = reader.nextLine();
                         reader.next();
+                        String searchTerm = reader.nextLine();
+
 
                         // Open the file as a buffered reader
                         BufferedReader bf = new BufferedReader(new FileReader(
@@ -141,7 +142,7 @@ public class ContactTest {
                         String line;
 
                         // Let the user know what we are searching for
-                        System.out.println("Searching for " + searchterm
+                        System.out.println("Searching for " + searchTerm
                                 + " in file...");
                         // Loop through each line, putting the line into our line
                         // variable.
@@ -149,7 +150,7 @@ public class ContactTest {
                         while ((line = bf.readLine()) != null) {
                             // Increment the count and find the index of the word.
                             linecount++;
-                            int indexfound = line.indexOf(searchterm);
+                            int indexfound = line.indexOf(searchTerm);
 
                             // If greater than -1, means we found a match.
                             if (indexfound > -1) {
