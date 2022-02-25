@@ -23,7 +23,7 @@ public class ContactTest {
         ArrayList<String> contacts = new ArrayList<String>();
         while(action != 5){
 
-            System.out.println("Welcome to the Contact list \n" + "What would you like to do?");
+            System.out.println(" # Welcome to the Contact list  #\n" + "What would you like to do?");
 
             System.out.println("1. View Contacts" + "\n"
                     + "2. Add a new contact" + "\n"
